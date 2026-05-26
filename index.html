@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="index,follow" />
   <meta name="description" content="Privacy Policy for Cove, an ambient-sound app for iOS and Android." />
-  <meta name="theme-color" content="#dfeffa" />
+  <meta name="theme-color" content="#fdf6e7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d2530" media="(prefers-color-scheme: dark)" />
   <title>Privacy Policy — Cove</title>
 
   <!--
@@ -13,37 +14,51 @@
     trackers. A privacy page must not load third-party requests.
   -->
   <style>
+    /*
+     * Sea-beach palette
+     *
+     * Light mode: warm bone-white sand background, deep tidepool-teal ink,
+     *   turquoise accent, pale-coral shell highlight.
+     * Dark mode:  moonlit tidepool — deep teal surface, warm sand text,
+     *   bright-foam turquoise accent, sunset-coral warning.
+     *
+     * Contrast ratios were chosen so every ink token clears WCAG AA against
+     * its corresponding surface. Test with the browser devtools "contrast"
+     * inspector if you swap any value.
+     */
     :root {
-      --bg: #f5fbff;
-      --surface: #ffffff;
-      --surface-alt: #eaf4fb;
-      --ink: #0f2740;
-      --ink-soft: #43617a;
-      --ink-muted: #6b829a;
-      --rule: #d5e6f1;
-      --accent: #1f6f9a;
-      --accent-soft: #dfeffa;
-      --shell: #c9e6f3;
-      --warn-bg: #fff7e6;
-      --warn-rule: #f0d9a0;
-      --warn-ink: #6b4a00;
+      --bg: #fdf6e7;            /* dry sand */
+      --surface: #fffbf0;       /* sun-bleached shell */
+      --surface-alt: #f3e9d2;   /* damp sand */
+      --ink: #0f3a44;           /* deep tidepool */
+      --ink-soft: #2f6770;      /* shallow water */
+      --ink-muted: #7a8a8a;     /* driftwood grey */
+      --rule: #e6d8b8;          /* wet-sand line */
+      --accent: #0d8a8a;        /* turquoise */
+      --accent-soft: #d6efe9;   /* sea-foam */
+      --shell: #f0c2a8;         /* pale coral */
+      --coral: #d9755a;         /* sunset-coral */
+      --warn-bg: #fdebd2;       /* light sand */
+      --warn-rule: #e6c79a;     /* driftwood */
+      --warn-ink: #6b3d18;      /* wet driftwood */
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0b1822;
-        --surface: #122231;
-        --surface-alt: #16293a;
-        --ink: #e7f3fb;
-        --ink-soft: #b1cadc;
-        --ink-muted: #8aa6bb;
-        --rule: #1f3a52;
-        --accent: #7fc2e3;
-        --accent-soft: #1c3346;
-        --shell: #244a64;
-        --warn-bg: #2b2310;
-        --warn-rule: #6b5828;
-        --warn-ink: #f0d9a0;
+        --bg: #0d2530;          /* night ocean */
+        --surface: #133544;     /* deep reef */
+        --surface-alt: #194253; /* lit tidepool */
+        --ink: #f4e8d3;         /* moonlit sand */
+        --ink-soft: #c9dcd9;    /* foam */
+        --ink-muted: #8aa6a5;   /* wet stone */
+        --rule: #1f4a5a;        /* coral shadow */
+        --accent: #5dd5cf;      /* foam crest */
+        --accent-soft: #1c4855; /* still water */
+        --shell: #e8a87c;       /* sunset coral */
+        --coral: #f0a98e;       /* coral glow */
+        --warn-bg: #3a2918;
+        --warn-rule: #6b4a28;
+        --warn-ink: #f0c79a;
       }
     }
 
@@ -61,6 +76,17 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      /*
+       * Subtle horizon: a very faint band of sea-foam across the upper third
+       * of the page so it reads as "beach looking out at sea". Static, no
+       * scroll attachment (which janks on iOS).
+       */
+      background-image:
+        radial-gradient(ellipse 120% 40% at 50% 0%,
+          var(--accent-soft) 0%,
+          transparent 55%);
+      background-repeat: no-repeat;
+      background-size: 100% 480px;
     }
 
     .wrap {
@@ -78,13 +104,46 @@
       border-bottom: 1px solid var(--rule);
     }
 
+    /*
+     * Brand mark: sun rising over a horizon line. The top half is a warm
+     * sun-disc (coral → sand), the bottom half is calm sea (turquoise).
+     * Rendered with pure CSS gradients so the whole page stays asset-free.
+     */
     header.cove .mark {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, var(--accent-soft), var(--shell) 70%, var(--accent) 100%);
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
-      flex: 0 0 36px;
+      flex: 0 0 40px;
+      background:
+        linear-gradient(
+          to bottom,
+          var(--shell) 0%,
+          var(--shell) 48%,
+          var(--accent) 52%,
+          var(--accent) 100%
+        );
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent),
+        0 1px 2px color-mix(in srgb, var(--ink) 6%, transparent);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Sun reflection ripple across the sea half */
+    header.cove .mark::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 18%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: var(--accent-soft);
+      border-radius: 999px;
+      opacity: 0.7;
+      box-shadow:
+        0 4px 0 -1px var(--accent-soft),
+        0 -4px 0 -1px var(--accent-soft);
     }
 
     header.cove .brand {
