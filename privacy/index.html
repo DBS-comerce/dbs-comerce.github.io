@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Privacy Policy for Cove, an ambient-sound app for iOS and Android." />
+  <meta name="theme-color" content="#fdf6e7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d2530" media="(prefers-color-scheme: dark)" />
+  <title>Privacy Policy — Cove</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="cove">
+      <a class="brand-block" href="../" aria-label="Cove home">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <div class="brand">Cove</div>
+          <div class="brand-sub">Ambient sound for iOS &amp; Android</div>
+        </div>
+      </a>
+      <nav aria-label="Site">
+        <a href="../">Home</a>
+        <a href="./" aria-current="page">Privacy</a>
+      </nav>
+    </header>
+
+    <h1>Privacy Policy</h1>
+
+    <p class="meta">
+      <span><strong>Effective date:</strong> [EFFECTIVE_DATE]</span>
+      <span><strong>Last updated:</strong> [EFFECTIVE_DATE]</span>
+      <span><strong>Version:</strong> 1.0</span>
+    </p>
+
+    <p>
+      This Privacy Policy describes how the mobile application <strong>Cove</strong>
+      ("Cove", "the app", "we", "us", or "our"), published by
+      <strong>[OWNER_LEGAL_NAME]</strong>, handles information when you use it on
+      iOS or Android.
+    </p>
+
+    <p>
+      The canonical, publicly-hosted version of this document lives at
+      <strong><a href="[POLICY_URL]">[POLICY_URL]</a></strong>. If anything below
+      conflicts with the hosted version, the hosted version wins.
+    </p>
+
+    <section class="tldr" aria-labelledby="tldr-heading">
+      <h2 id="tldr-heading">The short version</h2>
+      <ul>
+        <li>Cove does <strong>not</strong> require an account.</li>
+        <li>Cove does <strong>not</strong> collect, transmit, or sell personal information about you for marketing, advertising, or profiling.</li>
+        <li>Cove does <strong>not</strong> access your camera, microphone, contacts, photos, or location. It does not record audio or video.</li>
+        <li>Cove sends one category of data off your device: <strong>anonymous crash and performance diagnostics</strong> through Sentry, used solely to detect and fix bugs.</li>
+        <li>Your in-app preferences (theme, listening history, settings) are stored <strong>locally on your device only</strong>. They are never uploaded.</li>
+      </ul>
+      <p style="margin-top:10px;margin-bottom:0;">You can stop all of the above at any time by uninstalling the app.</p>
+    </section>
+
+    <hr />
+
+    <section id="section-2">
+      <h2><span class="num">2.</span>Information Cove processes <a class="anchor" href="#section-2" aria-label="Permalink to section 2">#</a></h2>
+
+      <h3 id="section-2-1">2.1 Data that stays on your device <a class="anchor" href="#section-2-1" aria-label="Permalink to section 2.1">#</a></h3>
+      <p>
+        The following is created and stored only on your phone or tablet, in
+        storage managed by the operating system (Apple Keychain / Android
+        Keystore via <code>expo-secure-store</code>, and the OS sandboxed
+        app-data directory via <code>AsyncStorage</code>). It is
+        <strong>not</strong> transmitted to us or to any third party.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Examples</th><th>Storage location</th></tr></thead>
+          <tbody>
+            <tr><td>App preferences</td><td>Theme selection, last-used shell, audio volume</td><td>Device-local</td></tr>
+            <tr><td>Listening history</td><td>Which shells you've played and for how long, locally aggregated</td><td>Device-local</td></tr>
+            <tr><td>Session state</td><td>Currently-loaded shell, playback state</td><td>Device-local</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Uninstalling Cove deletes all of the above.</p>
+
+      <h3 id="section-2-2">2.2 Data that leaves your device <a class="anchor" href="#section-2-2" aria-label="Permalink to section 2.2">#</a></h3>
+      <p>
+        The only data that leaves your device is <strong>diagnostic telemetry</strong>
+        sent to our error-monitoring sub-processor, <strong>Sentry</strong>
+        (operated by Functional Software, Inc.). This is what we receive:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Field</th><th>Contents</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Crash reports</td>
+              <td>Stack traces, OS version, device model, app version, build number, the time of the crash</td>
+              <td>Diagnose and fix crashes</td>
+            </tr>
+            <tr>
+              <td>Performance traces</td>
+              <td>Anonymized timing data for ~20% of app sessions (route names, transaction durations, JS frame drops)</td>
+              <td>Identify and fix performance regressions</td>
+            </tr>
+            <tr>
+              <td>Session metadata</td>
+              <td>Anonymous session start/end, whether the session ended in a crash</td>
+              <td>Calculate crash-free-session rates</td>
+            </tr>
+            <tr>
+              <td>Network metadata</td>
+              <td>The <strong>IP address</strong> Sentry's servers observe from the connection (Sentry retains this only briefly for anti-abuse and geographic aggregation; it is not used by us to identify you)</td>
+              <td>Operational/security needs of the telemetry pipeline</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        We <strong>do not</strong> attach a user identifier, email, name, advertising
+        ID, or any other directly-identifying value to these reports. We do not
+        enable Sentry's session-replay product. We do not use Sentry's profiling
+        product for user fingerprinting.
+      </p>
+      <p>
+        Sentry's own privacy practices are documented at
+        <a href="https://sentry.io/privacy/" rel="noopener external">sentry.io/privacy</a>
+        and they are GDPR- and CCPA-aligned. Sentry acts as our
+        <strong>data processor</strong> for this telemetry.
+      </p>
+
+      <h3 id="section-2-3">2.3 Data we do not collect <a class="anchor" href="#section-2-3" aria-label="Permalink to section 2.3">#</a></h3>
+      <p>For clarity, Cove specifically does <strong>not</strong> collect:</p>
+      <ul>
+        <li>Your name, email address, phone number, postal address, or date of birth</li>
+        <li>Any account credentials (there are no accounts)</li>
+        <li>Contacts, calendar entries, SMS messages, or call logs</li>
+        <li>Precise or coarse location, GPS, or geolocation derived from Wi-Fi/Bluetooth</li>
+        <li>Advertising identifiers (IDFA on iOS, AAID on Android)</li>
+        <li>Health, fitness, or biometric data</li>
+        <li>Audio, video, or images captured from your device's microphone or camera (Cove does not request these permissions)</li>
+        <li>Any data for the purpose of advertising, profiling, or sale to third parties</li>
+      </ul>
+      <p>
+        We do not embed any third-party advertising SDKs, marketing trackers, or
+        social-media tracking pixels.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-3">
+      <h2><span class="num">3.</span>Device permissions <a class="anchor" href="#section-3" aria-label="Permalink to section 3">#</a></h2>
+      <p>
+        The app declares only the minimum permissions it needs to play ambient
+        sound. None of these permissions cause any personal data to leave your
+        device.
+      </p>
+
+      <h3 id="section-3-1">3.1 Modify audio settings (Android <code>MODIFY_AUDIO_SETTINGS</code>) <a class="anchor" href="#section-3-1" aria-label="Permalink to section 3.1">#</a></h3>
+      <ul>
+        <li><strong>What we ask for:</strong> ability to change audio routing/output state.</li>
+        <li><strong>What we use it for:</strong> routing ambient-sound playback through the device speaker, headphones, or paired Bluetooth output, and reacting correctly when another app interrupts audio.</li>
+        <li><strong>No data is collected.</strong></li>
+      </ul>
+
+      <h3 id="section-3-2">3.2 Background audio (iOS <code>UIBackgroundModes: audio</code>) <a class="anchor" href="#section-3-2" aria-label="Permalink to section 3.2">#</a></h3>
+      <ul>
+        <li><strong>What we ask for:</strong> permission to keep playing audio when the app is in the background or the screen is locked.</li>
+        <li><strong>What we use it for:</strong> so you can listen with the screen off.</li>
+        <li><strong>No data is collected.</strong></li>
+      </ul>
+
+      <h3 id="section-3-3">3.3 Permissions we explicitly do <strong>not</strong> request <a class="anchor" href="#section-3-3" aria-label="Permalink to section 3.3">#</a></h3>
+      <p>
+        Cove does not request the camera, microphone, location, contacts, photo
+        library, calendar, Bluetooth-scanning, or notification permissions. On
+        Android, the <code>CAMERA</code> and <code>RECORD_AUDIO</code> permissions
+        are explicitly blocked in the app manifest so that no transitive
+        dependency can quietly request them. If a future release ever needs one
+        of these permissions, this policy will be updated <strong>before</strong>
+        that release ships, and you will be asked for the permission at runtime.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-4">
+      <h2><span class="num">4.</span>Legal basis (for users in the EEA / UK) <a class="anchor" href="#section-4" aria-label="Permalink to section 4">#</a></h2>
+      <p>
+        Where the EU/UK General Data Protection Regulation applies, the lawful
+        bases on which we process the limited data described above are:
+      </p>
+      <ul>
+        <li><strong>Legitimate interest</strong> (Art. 6(1)(f) GDPR) — diagnostic telemetry that helps us keep the app stable and secure. The interest is balanced against your privacy by (a) minimizing the data collected, (b) not linking it to your identity, and (c) limiting retention as described in §6.</li>
+        <li><strong>Consent</strong> (Art. 6(1)(a) GDPR) — where you grant a runtime permission such as camera or microphone access; you may withdraw at any time via device settings.</li>
+      </ul>
+      <p>You have the rights described in §7 regardless of legal basis.</p>
+    </section>
+
+    <hr />
+
+    <section id="section-5">
+      <h2><span class="num">5.</span>International transfers <a class="anchor" href="#section-5" aria-label="Permalink to section 5">#</a></h2>
+      <p>
+        The Sentry infrastructure that receives the telemetry described in §2.2
+        may store data in the United States and/or the European Union, depending
+        on Sentry's project configuration. Where data about EU/UK users is
+        transferred to the United States, the transfer relies on Sentry's
+        Standard Contractual Clauses with us and on its participation in
+        applicable data-transfer frameworks. A copy of the SCCs is available on
+        request at <a href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a>.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-6">
+      <h2><span class="num">6.</span>Retention <a class="anchor" href="#section-6" aria-label="Permalink to section 6">#</a></h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Category</th><th>Retention</th></tr></thead>
+          <tbody>
+            <tr><td>On-device preferences and listening history</td><td>Until you uninstall Cove or clear app data</td></tr>
+            <tr><td>Crash and performance telemetry in Sentry</td><td>Up to <strong>90 days</strong>, then automatically deleted by Sentry's default retention policy</td></tr>
+            <tr><td>Aggregated, non-identifying metrics derived from telemetry (e.g. "crash-free session rate by app version")</td><td>May be retained indefinitely in summarized form</td></tr>
+            <tr><td>Support emails you send us</td><td>Up to <strong>24 months</strong> after the conversation ends, then deleted</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <hr />
+
+    <section id="section-7">
+      <h2><span class="num">7.</span>Your rights <a class="anchor" href="#section-7" aria-label="Permalink to section 7">#</a></h2>
+      <p>
+        Depending on where you live, you have some or all of the following rights
+        with respect to the limited data described in this policy:
+      </p>
+      <ul>
+        <li><strong>Right of access</strong> — ask us what diagnostic data we hold that relates to your device.</li>
+        <li><strong>Right to deletion</strong> — ask us to delete any diagnostic data linked to your device.</li>
+        <li><strong>Right to object / restrict processing</strong> — ask us to stop processing diagnostic data from your device.</li>
+        <li><strong>Right to lodge a complaint</strong> with a data-protection authority in your country.</li>
+        <li><strong>Right not to be subject to automated decision-making</strong> — Cove does not make automated decisions about you. There is nothing to opt out of.</li>
+      </ul>
+      <p>
+        Because Cove does not assign you a user ID, the only practical way for us
+        to locate diagnostic events tied to your device in Sentry is for you to
+        send us, from your device, a copy of the <strong>Sentry installation ID</strong>
+        (visible in the app at <em>Settings → About → Diagnostics ID</em>, if
+        exposed in your build) <strong>or</strong> an approximate window of time,
+        device model, and app version. Send this information to
+        <a href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a> and we will action the
+        request within <strong>30 days</strong>.
+      </p>
+      <p>
+        California residents have additional rights under the CCPA / CPRA: we do
+        not sell or "share" personal information as those terms are defined by
+        California law, and we have not done so in the preceding 12 months.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-8">
+      <h2><span class="num">8.</span>Children's privacy <a class="anchor" href="#section-8" aria-label="Permalink to section 8">#</a></h2>
+      <p>
+        Cove is <strong>not directed to children under 13</strong> (or under 16 in
+        the EEA, where local law sets the threshold higher). We do not knowingly
+        collect personal information from children. The app contains no in-app
+        purchases, no advertising, no chat, and no user-to-user communication.
+      </p>
+      <p>
+        If you are a parent or guardian and believe your child has used the app
+        in a way that caused us to receive any data, contact us at
+        <a href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a> and we will delete the
+        corresponding diagnostic records.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-9">
+      <h2><span class="num">9.</span>Security <a class="anchor" href="#section-9" aria-label="Permalink to section 9">#</a></h2>
+      <p>
+        The telemetry described in §2.2 is transmitted to Sentry over
+        <strong>TLS 1.2+</strong> HTTPS. On-device data is held in storage that
+        the operating system isolates per-app (the iOS Data Protection Class and
+        the Android app-private directory). We do not operate any backend
+        servers that hold data about you.
+      </p>
+      <p>
+        No system is ever perfectly secure, and we cannot guarantee that
+        unauthorized parties will never circumvent the protections above. We
+        will notify affected users without undue delay if we become aware of a
+        data breach that materially affects them.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-10">
+      <h2><span class="num">10.</span>Third-party services <a class="anchor" href="#section-10" aria-label="Permalink to section 10">#</a></h2>
+      <p>The following sub-processors may receive data described in §2.2:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sub-processor</th><th>Purpose</th><th>Privacy policy</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Sentry (Functional Software, Inc.)</td>
+              <td>Crash and performance diagnostics</td>
+              <td><a href="https://sentry.io/privacy/" rel="noopener external">sentry.io/privacy</a></td>
+            </tr>
+            <tr>
+              <td>Apple Inc.</td>
+              <td>App distribution via the App Store; on-device APIs and crash logs if you opted in to "Share with Developers" in iOS Settings</td>
+              <td><a href="https://www.apple.com/legal/privacy/" rel="noopener external">apple.com/legal/privacy</a></td>
+            </tr>
+            <tr>
+              <td>Google LLC</td>
+              <td>App distribution via Google Play; Play Console's anonymized install/crash counts visible to us as the developer</td>
+              <td><a href="https://policies.google.com/privacy" rel="noopener external">policies.google.com/privacy</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        App-Store and Play-Console anonymized analytics (download counts, crash
+        counts, retention curves) are produced by Apple and Google respectively
+        and are not under our control; they are governed by Apple's and Google's
+        own privacy policies.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-11">
+      <h2><span class="num">11.</span>Changes to this policy <a class="anchor" href="#section-11" aria-label="Permalink to section 11">#</a></h2>
+      <p>
+        We may update this policy from time to time. When we do, we will change
+        the <strong>Last updated</strong> date at the top, and — for material
+        changes — we will alert you on next launch of the app via an in-app
+        notice. Continued use of the app after a change indicates your
+        acceptance of the updated policy.
+      </p>
+      <p>
+        The version history of this document is published alongside it at
+        <a href="[POLICY_URL]">[POLICY_URL]</a>.
+      </p>
+    </section>
+
+    <hr />
+
+    <section id="section-12">
+      <h2><span class="num">12.</span>Contact <a class="anchor" href="#section-12" aria-label="Permalink to section 12">#</a></h2>
+      <p>
+        If you have any question, request, or complaint about this Privacy
+        Policy or about Cove's handling of data:
+      </p>
+      <ul>
+        <li><strong>Email:</strong> <a href="mailto:[CONTACT_EMAIL]">[CONTACT_EMAIL]</a></li>
+        <li><strong>Postal address:</strong> [OWNER_LEGAL_NAME], [OWNER_POSTAL_ADDRESS]</li>
+      </ul>
+      <p>
+        We aim to respond to privacy requests within <strong>7 days</strong> and
+        to action them within <strong>30 days</strong>, in line with GDPR Art. 12(3).
+      </p>
+    </section>
+
+    <footer class="site-footer">
+      <nav aria-label="Site footer">
+        <a href="../">Home</a>
+        <a href="./" aria-current="page">Privacy</a>
+        <a href="mailto:[CONTACT_EMAIL]">Contact</a>
+      </nav>
+      <p style="margin:0;">© <span id="copyright-year">2026</span> [OWNER_LEGAL_NAME]</p>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  </script>
+
+  <!--
+    ============================================================
+    INSTRUCTIONS FOR THE PUBLISHER — REMOVE THIS BLOCK BEFORE PUBLISHING
+    ============================================================
+
+    Find-and-replace these placeholders across BOTH this file AND
+    docs/index.html:
+
+      [EFFECTIVE_DATE]         e.g. 2026-06-01
+      [OWNER_LEGAL_NAME]       e.g. "Jane Doe" or "Acme Wellness LLC"
+      [OWNER_POSTAL_ADDRESS]   street, city, postal code, country
+      [CONTACT_EMAIL]          e.g. privacy@yourdomain.com (must be live!)
+      [POLICY_URL]             e.g. https://<user>.github.io/<repo>/privacy/
+
+    The Markdown source-of-truth is outsiders/PRIVACY-POLICY.md; edit it
+    alongside this file whenever the policy changes.
+
+    Apple "App Privacy" + Play "Data Safety" forms must match §2 of this
+    document. As of v1.0:
+      - Diagnostics → Crash Data: Collected, Not linked to user, Not used for tracking
+      - Diagnostics → Performance Data: Collected, Not linked to user, Not used for tracking
+      - Everything else: Data Not Collected
+
+    Have a lawyer in your jurisdiction read this before launch. This is a
+    starting template, not legal advice.
+  -->
+</body>
+</html>
