@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Association Tag Cloud</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 { color: #333; }
+    #tag-cloud {
+      max-width: 800px;
+      margin: 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .tag {
+      padding: 10px 18px;
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.1em;
+      user-select: none;
+    }
+    .tag:hover { transform: scale(1.1); }
+    .tag.selected {
+      background: #4a6fa5;
+      color: white;
+      border-color: #4a6fa5;
+    }
+    #selected-tags {
+      margin: 20px 0;
+      min-height: 50px;
+      font-size: 1.2em;
+    }
+    button {
+      padding: 12px 30px;
+      font-size: 1.1em;
+      background: #4a6fa5;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 20px;
+    }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    #results {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .color-card {
+      padding: 15px;
+      border-radius: 12px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .color-swatch {
+      height: 100px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Choose Your Vibe • Get Colors</h1>
+  <p>Select up to 4 associations from the tag cloud:</p>
+
+  <div id="tag-cloud"></div>
+
+  <div id="selected-tags">Selected: <strong>None</strong></div>
+
+  <button id="submit-btn" disabled>Find Matching Colors</button>
+  <button onclick="resetAll()">Reset</button>
+
+  <div id="results"></div>
+
+<script>
+// All colors with their associations
+const colors = [
+  { name: "Blue",        swatch: "#4A90E2", associations: ["trust", "calm", "stability", "peace", "professionalism"] },
+  { name: "Brown",       swatch: "#8B5A2B", associations: ["earthy", "warm", "reliable", "natural", "grounded"] },
+  { name: "Gray",        swatch: "#7F8C8D", associations: ["modern", "balanced", "sophisticated", "neutral"] },
+  { name: "Pink",        swatch: "#FF69B4", associations: ["romantic", "gentle", "feminine", "playful", "compassionate"] },
+  { name: "White",       swatch: "#F8F9FA", associations: ["clean", "pure", "fresh", "simple", "elegant"] },
+  { name: "Navy",        swatch: "#1E3A8A", associations: ["trust", "elegance", "authority", "calm"] },
+  { name: "Charcoal",    swatch: "#34495E", associations: ["modern", "strong", "serious", "depth"] },
+  { name: "Beige",       swatch: "#E5D5C0", associations: ["warm", "natural", "soft", "comforting"] },
+  { name: "Cream",       swatch: "#F5EDE1", associations: ["warm", "luxurious", "soft", "inviting"] },
+  { name: "Sage Green",  swatch: "#8FBC8F", associations: ["earthy", "calm", "natural", "refreshing", "balanced"] },
+  { name: "Terracotta",  swatch: "#E07A5F", associations: ["warm", "earthy", "organic", "energetic"] },
+  { name: "Blush",       swatch: "#F4C2C2", associations: ["soft", "romantic", "delicate", "youthful"] },
+  { name: "Dusty Rose",  swatch: "#D8A7B1", associations: ["romantic", "elegant", "sophisticated"] },
+  { name: "Lavender",    swatch: "#C8A2C8", associations: ["gentle", "dreamy", "soothing", "spiritual"] },
+  { name: "Soft Gold",   swatch: "#E8C39E", associations: ["warm", "luxury", "elegance"] }
+];
+
+// Generate unique tags
+const allTags = [...new Set(colors.flatMap(c => c.associations))];
+
+const tagCloud = document.getElementById('tag-cloud');
+const selectedTagsDiv = document.getElementById('selected-tags');
+const submitBtn = document.getElementById('submit-btn');
+let selectedTags = [];
+
+// Create tag cloud
+allTags.forEach(tag => {
+  const el = document.createElement('div');
+  el.className = 'tag';
+  el.textContent = tag.charAt(0).toUpperCase() + tag.slice(1);
+  el.dataset.value = tag;
+  el.onclick = () => toggleTag(el);
+  tagCloud.appendChild(el);
+});
+
+function toggleTag(el) {
+  const tag = el.dataset.value;
+  
+  if (selectedTags.includes(tag)) {
+    selectedTags = selectedTags.filter(t => t !== tag);
+    el.classList.remove('selected');
+  } else if (selectedTags.length < 4) {
+    selectedTags.push(tag);
+    el.classList.add('selected');
+  }
+  
+  updateSelectedDisplay();
+}
+
+function updateSelectedDisplay() {
+  selectedTagsDiv.innerHTML = `Selected: <strong>${selectedTags.length ? selectedTags.join(', ') : 'None'}</strong>`;
+  submitBtn.disabled = selectedTags.length === 0;
+}
+
+function resetAll() {
+  selectedTags = [];
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('selected'));
+  updateSelectedDisplay();
+  document.getElementById('results').innerHTML = '';
+}
+
+// Semantic search & ranking
+submitBtn.onclick = () => {
+  if (selectedTags.length === 0) return;
+
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = '<h2>Recommended Colors</h2>';
+
+  const scoredColors = colors.map(color => {
+    let score = 0;
+    selectedTags.forEach(tag => {
+      if (color.associations.includes(tag)) score += 2;           // strong match
+      else if (color.associations.some(a => a.includes(tag) || tag.includes(a))) score += 1; // partial match
+    });
+    return { ...color, score };
+  }).sort((a, b) => b.score - a.score);
+
+  scoredColors.forEach(item => {
+    if (item.score === 0) return;
+    
+    const card = document.createElement('div');
+    card.className = 'color-card';
+    card.innerHTML = `
+      <div class="color-swatch" style="background: ${item.swatch};"></div>
+      <strong>${item.name}</strong><br>
+      <small>Match: ${item.score} point${item.score > 1 ? 's' : ''}</small>
+    `;
+    resultsDiv.appendChild(card);
+  });
+};
+</script>
+
+</body>
+</html>
